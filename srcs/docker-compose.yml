@@ -5,12 +5,28 @@ services:
       dockerfile: ./requirements/nginx/Dockerfile
     ports:
       - "8080:80"
+    volumes:
+      - wordpress:/var/www/html
   wordpress:
     build:
       context: .
       dockerfile: ./requirements/wordpress/Dockerfile
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: patate
+      WORDPRESS_DB_PASSWORD: maizena
+      WORDPRESS_DB_NAME: patatedb
+    volumes:
+      - wordpress:/var/www/html
   mariadb:
     build:
       context: .
       dockerfile: ./requirements/mariadb/Dockerfile
+    environment:
+      MARIADB_ROOT_PASSWORD: secret
+      MARIADB_DATABASE: patatedb
+      MARIADB_USER: patate
+      MARIADB_PASSWORD: maizena
+volumes:
+  wordpress:
 

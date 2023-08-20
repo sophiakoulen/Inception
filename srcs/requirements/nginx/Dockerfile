@@ -1,2 +1,2 @@
 FROM nginx
-COPY requirements/nginx/conf/nginx.conf /etc/nginx/
+COPY requirements/nginx/conf/ /etc/nginx/conf.d
