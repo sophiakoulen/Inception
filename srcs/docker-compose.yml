@@ -27,6 +27,9 @@ services:
       MARIADB_DATABASE: patatedb
       MARIADB_USER: patate
       MARIADB_PASSWORD: maizena
+    volumes:
+      - db:/var/lib/mysql
 volumes:
   wordpress:
+  db:
 
