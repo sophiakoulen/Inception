@@ -2,8 +2,8 @@ services:
  
   nginx:
     build:
-      context: .
-      dockerfile: ./requirements/nginx/Dockerfile
+      context: ..
+      dockerfile: srcs/requirements/nginx/Dockerfile
     ports:
       - "443:443"
     volumes:
@@ -13,16 +13,16 @@ services:
  
   wordpress:
     build:
-      context: .
-      dockerfile: ./requirements/wordpress/Dockerfile
+      context: ..
+      dockerfile: srcs/requirements/wordpress/Dockerfile
     environment:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: patate
       WORDPRESS_DB_PASSWORD: maizena
       WORDPRESS_DB_NAME: patatedb
       WORDPRESS_CONFIG_EXTRA: |
-        define('WP_HOME', 'https://skoulen.42.fr');
-        define('WP_SITEURL', 'https://skoulen.42.fr');
+        define('WP_HOME', 'https://${DOMAIN}');
+        define('WP_SITEURL', 'https://${DOMAIN}');
     volumes:
       - wordpress:/var/www/html
     networks:
@@ -30,8 +30,8 @@ services:
   
   mariadb:
     build:
-      context: .
-      dockerfile: ./requirements/mariadb/Dockerfile
+      context: ..
+      dockerfile: srcs/requirements/mariadb/Dockerfile
     environment:
       MARIADB_ROOT_PASSWORD: secret
       MARIADB_DATABASE: patatedb
