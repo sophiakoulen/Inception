@@ -27,6 +27,8 @@ services:
       - wordpress:/var/www/html
     networks:
       - website
+    depends_on:
+      - mariadb
   
   mariadb:
     build:
