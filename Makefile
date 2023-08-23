@@ -57,7 +57,7 @@ rm-nginx-conf:
 nginx-conf:
 	$(ENV) ./srcs/requirements/nginx/tools/gen-nginx-conf.sh $(dir $(NGINX_CONF_FILE))
 
-up:
+up: $(SSL_CERT) nginx-conf
 	$(SUDO) docker compose -f srcs/docker-compose.yml build --no-cache && $(SUDO) docker compose -f srcs/docker-compose.yml up -d
 
 down:
