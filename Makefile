@@ -10,7 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-include ./.secrets/.env
+include ./srcs/.env
+
+#tool to execute a script with a .env file
+ENV=			./srcs/requirements/tools/run-with-env.sh ./srcs/.env
 
 ROOT_CA_DIR=	.secrets/root-ca/
 ROOT_CA_NAME=	rootCA
@@ -41,15 +44,15 @@ $(SSL_CERT_DIR):
 	mkdir -p $@
 
 $(ROOT_CA): | $(ROOT_CA_DIR)
-	./srcs/requirements/nginx/tools/gen-root-certificate.sh $(ROOT_CA_DIR) $(ROOT_CA_NAME)
+	$(ENV) ./srcs/requirements/nginx/tools/gen-root-certificate.sh $(ROOT_CA_DIR) $(ROOT_CA_NAME)
 
 $(SSL_CERT): $(ROOT_CA) | $(SSL_CERT_DIR)
-	./srcs/requirements/nginx/tools/gen-self-signed-certificate.sh $(ROOT_CA_DIR) $(ROOT_CA_NAME) $(SSL_CERT_DIR)
+	$(ENV) ./srcs/requirements/nginx/tools/gen-self-signed-certificate.sh $(ROOT_CA_DIR) $(ROOT_CA_NAME) $(SSL_CERT_DIR)
 
 rm-nginx-conf:
 	rm -f $(NGINX_CONF_FILE)
 
 nginx-conf:
-	./srcs/requirements/nginx/tools/gen-nginx-conf.sh $(dir $(NGINX_CONF_FILE))
+	$(ENV) ./srcs/requirements/nginx/tools/gen-nginx-conf.sh $(dir $(NGINX_CONF_FILE))
 
 .PHONY: all self-signed-cert root-cert rm-self-signed-cert rm-root-cert 
