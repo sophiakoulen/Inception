@@ -17,9 +17,9 @@ services:
       dockerfile: srcs/requirements/wordpress/Dockerfile
     environment:
       WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: patate
-      WORDPRESS_DB_PASSWORD: maizena
-      WORDPRESS_DB_NAME: patatedb
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
       WORDPRESS_CONFIG_EXTRA: |
         define('WP_HOME', 'https://${DOMAIN}');
         define('WP_SITEURL', 'https://${DOMAIN}');
@@ -33,10 +33,10 @@ services:
       context: ..
       dockerfile: srcs/requirements/mariadb/Dockerfile
     environment:
-      MARIADB_ROOT_PASSWORD: secret
-      MARIADB_DATABASE: patatedb
-      MARIADB_USER: patate
-      MARIADB_PASSWORD: maizena
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db:/var/lib/mysql
     networks:

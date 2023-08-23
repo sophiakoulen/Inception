@@ -15,6 +15,8 @@ include ./srcs/.env
 #tool to execute a script with a .env file
 ENV=			./srcs/requirements/tools/run-with-env.sh ./srcs/.env
 
+SUDO=			sudo
+
 ROOT_CA_DIR=	.secrets/root-ca/
 ROOT_CA_NAME=	rootCA
 ROOT_CA=		$(ROOT_CA_DIR)/$(ROOT_CA_NAME).crt
@@ -54,5 +56,11 @@ rm-nginx-conf:
 
 nginx-conf:
 	$(ENV) ./srcs/requirements/nginx/tools/gen-nginx-conf.sh $(dir $(NGINX_CONF_FILE))
+
+up:
+	$(SUDO) docker compose -f srcs/docker-compose.yml build --no-cache && $(SUDO) docker compose -f srcs/docker-compose.yml up -d
+
+down:
+	$(SUDO) docker compose -f srcs/docker-compose.yml down
 
 .PHONY: all self-signed-cert root-cert rm-self-signed-cert rm-root-cert 
