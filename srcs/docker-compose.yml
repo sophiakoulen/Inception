@@ -10,25 +10,20 @@ services:
       - wordpress:/var/www/html
     networks:
       - website
+    restart: always
  
   wordpress:
     build:
       context: ..
       dockerfile: srcs/requirements/wordpress/Dockerfile
-    environment:
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: ${DB_USER}
-      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
-      WORDPRESS_DB_NAME: ${DB_NAME}
-      WORDPRESS_CONFIG_EXTRA: |
-        define('WP_HOME', 'https://${DOMAIN}');
-        define('WP_SITEURL', 'https://${DOMAIN}');
     volumes:
       - wordpress:/var/www/html
     networks:
       - website
     depends_on:
       - mariadb
+    env_file: .env
+    restart: always
   
   mariadb:
     build:
@@ -43,6 +38,7 @@ services:
       - db:/var/lib/mysql
     networks:
       - website
+    restart: always
 
 volumes:
   wordpress:

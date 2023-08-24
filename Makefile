@@ -57,10 +57,21 @@ rm-nginx-conf:
 nginx-conf:
 	$(ENV) ./srcs/requirements/nginx/tools/gen-nginx-conf.sh $(dir $(NGINX_CONF_FILE))
 
-up: $(SSL_CERT) nginx-conf
-	$(SUDO) docker compose -f srcs/docker-compose.yml build --no-cache && $(SUDO) docker compose -f srcs/docker-compose.yml up -d
+up: down $(SSL_CERT) nginx-conf
+	$(SUDO) docker compose -f srcs/docker-compose.yml up -d
+
+build: down $(SSL_CERT) nginx-conf
+	$(SUDO) docker compose -f srcs/docker-compose.yml build
+
+rebuild: down $(SSL_CERT) nginx-conf
+	$(SUDO) docker compose -f srcs/docker-compose.yml build --no-cache
+
+re: rebuild up
 
 down:
 	$(SUDO) docker compose -f srcs/docker-compose.yml down
+
+logs:
+	$(SUDO) docker compose -f srcs/docker-compose.yml logs
 
 .PHONY: all self-signed-cert root-cert rm-self-signed-cert rm-root-cert 
