@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausann>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/22 11:55:07 by skoulen           #+#    #+#              #
-#    Updated: 2023/08/22 15:18:55 by skoulen          ###   ########.fr        #
+#    Updated: 2023/08/28 10:43:18 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,6 @@ include ./srcs/.env
 
 #tool to execute a script with a .env file
 ENV=			./srcs/requirements/tools/run-with-env.sh ./srcs/.env
-
-SUDO=			sudo
 
 ROOT_CA_DIR=	.secrets/root-ca/
 ROOT_CA_NAME=	rootCA
@@ -58,20 +56,20 @@ nginx-conf:
 	$(ENV) ./srcs/requirements/nginx/tools/gen-nginx-conf.sh $(dir $(NGINX_CONF_FILE))
 
 up: down $(SSL_CERT) nginx-conf
-	$(SUDO) docker compose -f srcs/docker-compose.yml up -d
+	 docker compose -f srcs/docker-compose.yml up -d
 
 build: down $(SSL_CERT) nginx-conf
-	$(SUDO) docker compose -f srcs/docker-compose.yml build
+	 docker compose -f srcs/docker-compose.yml build
 
 rebuild: down $(SSL_CERT) nginx-conf
-	$(SUDO) docker compose -f srcs/docker-compose.yml build --no-cache
+	 docker compose -f srcs/docker-compose.yml build --no-cache
 
 re: rebuild up
 
 down:
-	$(SUDO) docker compose -f srcs/docker-compose.yml down
+	 docker compose -f srcs/docker-compose.yml down
 
 logs:
-	$(SUDO) docker compose -f srcs/docker-compose.yml logs
+	 docker compose -f srcs/docker-compose.yml logs
 
 .PHONY: all self-signed-cert root-cert rm-self-signed-cert rm-root-cert 
