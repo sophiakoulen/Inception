@@ -4,6 +4,14 @@ mariadb-install-db --user=root --basedir=/usr --datadir=/var/lib/mysql
 
 mkdir /run/mysqld
 
+#delete empty user
+#delete 'test' database
+#delete remote root user
+#set a root password
+#create wordpress database
+#create wordpress user for the database
+#give that user access to the wordpress database
+
 mariadbd --user=root --bootstrap <<-EOF
 USE mysql;
 FLUSH PRIVILEGES;
