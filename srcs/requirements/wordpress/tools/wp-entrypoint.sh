@@ -50,7 +50,15 @@ config_users()
 	)
 }
 
-# Try to setup wordpress. If it fails, we want the container to restart
-download_wp && create_config && core_install && config_users || exit 1
+# Setup wordpress
+# If any step fails, the script will fail.
+# (That's what set -e does)
+
+set -e
+
+download_wp
+create_config
+core_install
+config_users
 
 exec "$@"
