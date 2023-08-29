@@ -7,7 +7,9 @@ services:
     ports:
       - "443:443"
     volumes:
-      - wordpress:/var/www/html
+      - type: bind
+        source: ${HOME}/data/wordpress
+        target: /var/www/html
     networks:
       - website
     restart: on-failure
@@ -17,7 +19,9 @@ services:
       context: ..
       dockerfile: srcs/requirements/wordpress/Dockerfile
     volumes:
-      - wordpress:/var/www/html
+      - type: bind
+        source: ${HOME}/data/wordpress
+        target: /var/www/html
     networks:
       - website
     depends_on:
@@ -31,14 +35,12 @@ services:
       dockerfile: srcs/requirements/mariadb/Dockerfile
     env_file: .env
     volumes:
-      - db:/var/lib/mysql
+      - type: bind
+        source: ${HOME}/data/db
+        target: /var/lib/mysql
     networks:
       - website
     restart: on-failure
-
-volumes:
-  wordpress:
-  db:
 
 networks:
   website:

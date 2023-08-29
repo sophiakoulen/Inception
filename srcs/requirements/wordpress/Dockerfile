@@ -14,9 +14,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 	chmod +x wp-cli.phar && \
 	mv wp-cli.phar /usr/local/bin/wp
 
-RUN mkdir -p /var/www/html &&  wp core download --path=/var/www/html
-
-
 RUN sed -i 's#^listen = 127.0.0.1:9000#listen = 9000#' /etc/php81/php-fpm.d/www.conf
 
 COPY srcs/requirements/wordpress/tools/wp-entrypoint.sh /

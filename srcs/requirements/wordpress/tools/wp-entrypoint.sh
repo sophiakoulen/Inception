@@ -1,5 +1,15 @@
 #!/bin/bash
 
+download_wp()
+{
+	if test -f "/var/www/html/wp-config-sample.php"; then
+		echo "wp-config-sample.php exists! Not downloading wordpress."
+	else
+		echo "wp-config-sample.php not found. Let's download wordpress."
+		wp core download --path=/var/www/html
+	fi
+}
+
 create_config()
 {
 	if test -f "/var/www/html/wp-config.php"; then
@@ -41,6 +51,6 @@ config_users()
 }
 
 # Try to setup wordpress. If it fails, we want the container to restart
-create_config && core_install && config_users || exit 1
+download_wp && create_config && core_install && config_users || exit 1
 
 exec "$@"
