@@ -1,9 +1,11 @@
 services:
  
   nginx:
+    container_name: nginx-container
     build:
       context: ..
       dockerfile: srcs/requirements/nginx/Dockerfile
+    image: nginx
     ports:
       - "443:443"
     volumes:
@@ -15,9 +17,11 @@ services:
     restart: on-failure
  
   wordpress:
+    container_name: wordpress-container
     build:
       context: ..
       dockerfile: srcs/requirements/wordpress/Dockerfile
+    image: wordpress
     volumes:
       - type: bind
         source: ${HOME}/data/wordpress
@@ -30,9 +34,11 @@ services:
     restart: on-failure
   
   mariadb:
+    container_name: mariadb-container
     build:
       context: ..
       dockerfile: srcs/requirements/mariadb/Dockerfile
+    image: mariadb
     env_file: .env
     volumes:
       - type: bind
