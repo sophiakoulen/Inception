@@ -48,5 +48,16 @@ services:
       - website
     restart: on-failure
 
+  redis-cache:
+    container_name: redis-cache-container
+    build:
+      context: ..
+      dockerfile: srcs/requirements/redis-cache/Dockerfile
+    image: redis-cache
+    env_file: .env
+    networks:
+      - website
+    restart: on-failure
+
 networks:
   website:

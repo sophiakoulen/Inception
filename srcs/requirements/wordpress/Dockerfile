@@ -7,7 +7,8 @@ RUN apk add --no-cache bash curl ca-certificates tzdata zip \
     php81-pdo_mysql php81-mysqli php81-session \
     php81-gd php81-iconv php81-gmp php81-zip \
     php81-curl php81-opcache php81-ctype php81-apcu \
-	 php81-intl php81-bcmath php81-dom php81-mbstring php81-xmlreader mysql-client mariadb-client && apk add -u musl && \
+	php81-tokenizer \
+	php81-intl php81-bcmath php81-dom php81-mbstring php81-xmlreader mysql-client mariadb-client && apk add -u musl && \
 	rm -rf /var/cache/apk/*
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \

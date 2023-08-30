@@ -47,6 +47,13 @@ config_users()
 	)
 }
 
+setup_redis()
+{
+	wp config set WP_REDIS_PATH --raw "__DIR__ . '/../redis.sock'"
+	wp config set WP_REDIX_SCHEME "unix"
+	wp plugin install redis-cache --activate
+}
+
 # Setup wordpress
 # If any step fails, the script will fail.
 # (That's what set -e does)
@@ -57,5 +64,6 @@ download_wp
 create_config
 core_install
 config_users
+setup_redis
 
 exec "$@"
