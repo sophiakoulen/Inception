@@ -17,7 +17,6 @@ create_config()
 	else
 		echo "Creating wp-config.php because it doesn't exist..."
 		cd /var/www/html && wp config create \
-			--allow-root \
 			--force \
 			--dbname=$DB_NAME \
 			--dbuser=$DB_USER \
@@ -34,8 +33,7 @@ core_install()
 		--title="$SITE_TITLE" \
 		--admin_user=$WP_ADMIN_USER \
 		--admin_password=$WP_ADMIN_PWD \
-		--admin_email=$WP_ADMIN_EMAIL \
-		--allow-root
+		--admin_email=$WP_ADMIN_EMAIL
 }
 
 config_users()
@@ -45,8 +43,7 @@ config_users()
 		echo "Adding regular user to database..."
 		cd /var/www/html && wp user create $WP_REGULAR_USER $WP_REGULAR_EMAIL \
 			--user_pass=$WP_REGULAR_PWD \
-			--role=author \
-			--allow-root
+			--role=author
 	)
 }
 
