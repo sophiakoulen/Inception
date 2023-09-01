@@ -53,6 +53,8 @@ services:
     build:
       context: ..
       dockerfile: srcs/requirements/redis-cache/Dockerfile
+      args:
+        REDIS_PASSWORD: ${REDIS_PASSWORD}
     image: redis-cache
     env_file: .env
     networks:
