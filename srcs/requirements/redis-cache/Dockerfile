@@ -9,7 +9,7 @@ RUN mkdir /etc/redis && \
 
 #COPY srcs/requirements/redis-cache/tools/redis_init_script /etc/init.d/redis_6379
 
-#COPY srcs/requirements/redis-cache/conf/redis.conf /etc/redis/6379.conf
+COPY srcs/requirements/redis-cache/conf/redis.conf /etc/redis/redis.conf
 
 #RUN mkdir /var/redis/6379
 
@@ -19,4 +19,4 @@ COPY srcs/requirements/redis-cache/tools/redis-entrypoint.sh /
 
 ENTRYPOINT ["/redis-entrypoint.sh"]
 
-CMD ["redis-server"]
+CMD ["redis-server", "/etc/redis/redis.conf"]

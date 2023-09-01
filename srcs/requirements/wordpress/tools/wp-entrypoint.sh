@@ -49,8 +49,9 @@ config_users()
 
 setup_redis()
 {
-	wp config set WP_REDIS_PATH --raw "__DIR__ . '/../redis.sock'"
-	wp config set WP_REDIX_SCHEME "unix"
+	wp config set WP_REDIS_HOST "redis-cache"
+	wp config set WP_REDIS_PORT "6379"
+	wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD
 	wp plugin install redis-cache --activate
 }
 
