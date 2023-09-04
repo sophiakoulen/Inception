@@ -61,5 +61,20 @@ services:
       - website
     restart: on-failure
 
+  vsftpd:
+    container_name: vsftpd-container
+    build:
+      context: ..
+      dockerfile: srcs/requirements/vsftpd/Dockerfile
+    image: vsftpd
+    env_file: .env
+    networks:
+      - website
+    restart: on-failure
+    ports:
+      - "21:21"
+      - "20:20"
+      - "5000-5042:5000-5042"
+
 networks:
   website:
