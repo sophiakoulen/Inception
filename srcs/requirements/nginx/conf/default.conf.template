@@ -33,3 +33,28 @@ server {
         fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
     } 
 }
+
+server {
+	server_name			DOMAIN;
+    
+	listen 				8080;
+	listen				[::]:8080;
+	
+    access_log  /var/log/nginx/adminer.access.log;
+    error_log   /var/log/nginx/adminer.error.log;
+
+	root /var/www/adminer;
+    index adminer.php; 
+
+    location / {
+        try_files $uri $uri/ /adminer.php?$args;
+    }
+
+    location ~ \.php$ {
+		try_files $uri =404;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass   adminer:9001;
+        fastcgi_index  adminer.php; 
+        include fastcgi.conf;
+    }
+}

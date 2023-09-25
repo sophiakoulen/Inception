@@ -8,7 +8,7 @@ COPY srcs/requirements/nginx/conf/default.conf /etc/nginx/http.d/default.conf
 #copy SSL certificate
 COPY .secrets/certs/ /etc/nginx/certs
 
-EXPOSE 443
+EXPOSE 443 8080
 
 COPY srcs/requirements/nginx/tools/nginx-entrypoint.sh /
 
