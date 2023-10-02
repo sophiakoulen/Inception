@@ -68,6 +68,9 @@ services:
     build:
       context: ..
       dockerfile: srcs/requirements/vsftpd/Dockerfile
+      args:
+        FTP_USER: ${FTP_USER}
+        FTP_PASSWORD: ${FTP_PASSWORD}
     image: vsftpd
     networks:
       - website
@@ -75,6 +78,7 @@ services:
     ports:
       - "21:21"
       - "20:20"
+      - "990:990"
       - "5000-5042:5000-5042"
 
   adminer:

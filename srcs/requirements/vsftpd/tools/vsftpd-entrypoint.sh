@@ -2,6 +2,6 @@
 
 set -e
 
-echo HELLO
+#ln -sf /dev/stdout /var/log/vsftpd/vsftpd.log
 
 exec "$@"
