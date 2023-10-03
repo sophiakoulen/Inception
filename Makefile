@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausann>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/22 11:55:07 by skoulen           #+#    #+#              #
-#    Updated: 2023/08/28 10:43:18 by skoulen          ###   ########.fr        #
+#    Updated: 2023/10/03 11:33:51 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SSL_CERT=		$(SSL_CERT_DIR)/$(SSL_CERT_NAME).crt
 
 NGINX_CONF_FILE=./srcs/requirements/nginx/conf/default.conf
 
-all: self-signed-cert nginx-conf
+all: self-signed-cert nginx-conf build up
 
 self-signed-cert: $(SSL_CERT)
 
@@ -72,4 +72,8 @@ down:
 logs:
 	 docker compose -f srcs/docker-compose.yml logs
 
-.PHONY: all self-signed-cert root-cert rm-self-signed-cert rm-root-cert 
+.PHONY: all \
+		self-signed-cert root-cert rm-self-signed-cert rm-root-cert \
+		build rebuild \
+		re up down logs \
+		nginx-conf rm-nginx-conf
