@@ -12,7 +12,7 @@ RUN sed -i 's#^listen = 127.0.0.1:9000#listen = 9001#' /etc/php81/php-fpm.d/www.
 
 EXPOSE 9001
 
-COPY srcs/requirements/adminer/tools/entrypoint.sh /
+COPY tools/entrypoint.sh /
 
 ENTRYPOINT ["/entrypoint.sh"]
 

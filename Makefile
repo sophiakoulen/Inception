@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausann>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/22 11:55:07 by skoulen           #+#    #+#              #
-#    Updated: 2023/10/03 11:46:58 by skoulen          ###   ########.fr        #
+#    Updated: 2023/10/03 12:04:42 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ ROOT_CA_DIR=	.secrets/root-ca/
 ROOT_CA_NAME=	rootCA
 ROOT_CA=		$(ROOT_CA_DIR)/$(ROOT_CA_NAME).crt
 
-SSL_CERT_DIR=	.secrets/certs/
+SSL_CERT_DIR=	./srcs/requirements/nginx/certs/
 SSL_CERT_NAME=	$(DOMAIN)
 SSL_CERT=		$(SSL_CERT_DIR)/$(SSL_CERT_NAME).crt
 

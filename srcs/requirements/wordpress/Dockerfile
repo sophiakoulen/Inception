@@ -17,7 +17,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 RUN sed -i 's#^listen = 127.0.0.1:9000#listen = 9000#' /etc/php81/php-fpm.d/www.conf
 
-COPY srcs/requirements/wordpress/tools/wp-entrypoint.sh /
+COPY tools/wp-entrypoint.sh /
 
 ENV SERVICE_NAME="wordpress"
 

@@ -2,7 +2,7 @@ FROM alpine:3.17
 
 RUN apk update && apk add mariadb mariadb-client
 
-COPY srcs/requirements/mariadb/tools/mariadb-entrypoint.sh /
+COPY tools/mariadb-entrypoint.sh /
 
 EXPOSE 3306
 

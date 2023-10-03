@@ -1,3 +1,4 @@
 .secrets
 srcs/.env
+srcs/requirements/nginx/certs
 srcs/requirements/nginx/conf/default.conf

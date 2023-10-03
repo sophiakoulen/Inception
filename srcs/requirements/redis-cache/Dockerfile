@@ -14,7 +14,7 @@ RUN wget https://raw.githubusercontent.com/redis/redis/7.0.12/redis.conf && \
 	sed -i "s/bind 127.0.0.1 -::1/# bind 127.0.0.1 -::1/g" /etc/redis/redis.conf && \	
 	sed -i "s/# requirepass foobared/requirepass $REDIS_PASSWORD/g" /etc/redis/redis.conf
 
-COPY srcs/requirements/redis-cache/tools/redis-entrypoint.sh /
+COPY tools/redis-entrypoint.sh /
 
 ENTRYPOINT ["/redis-entrypoint.sh"]
 

@@ -3,8 +3,7 @@ services:
   nginx:
     container_name: nginx-container
     build:
-      context: ..
-      dockerfile: srcs/requirements/nginx/Dockerfile
+      context: requirements/nginx
     image: nginx
     ports:
       - "443:443"
@@ -21,8 +20,7 @@ services:
   wordpress:
     container_name: wordpress-container
     build:
-      context: ..
-      dockerfile: srcs/requirements/wordpress/Dockerfile
+      context: requirements/wordpress
     image: wordpress
     volumes:
       - type: bind
@@ -38,8 +36,7 @@ services:
   mariadb:
     container_name: mariadb-container
     build:
-      context: ..
-      dockerfile: srcs/requirements/mariadb/Dockerfile
+      context: requirements/mariadb
     image: mariadb
     env_file: .env
     volumes:
@@ -53,8 +50,7 @@ services:
   redis-cache:
     container_name: redis-cache-container
     build:
-      context: ..
-      dockerfile: srcs/requirements/redis-cache/Dockerfile
+      context: srcs/requirements/redis-cache
       args:
         REDIS_PASSWORD: ${REDIS_PASSWORD}
     image: redis-cache
@@ -66,8 +62,7 @@ services:
   vsftpd:
     container_name: vsftpd-container
     build:
-      context: ..
-      dockerfile: srcs/requirements/vsftpd/Dockerfile
+      context: srcs/requirements/vsftpd
       args:
         FTP_USER: ${FTP_USER}
         FTP_PASSWORD: ${FTP_PASSWORD}
@@ -84,8 +79,7 @@ services:
   adminer:
     container_name: adminer-container
     build:
-      context: ..
-      dockerfile: srcs/requirements/adminer/Dockerfile
+      context: srcs/requirements/adminer
     image: adminer
     env_file: .env
     networks:
@@ -97,8 +91,7 @@ services:
   static-site:
     container_name: static-site-container
     build:
-      context: ..
-      dockerfile: srcs/requirements/static-site/Dockerfile
+      context: srcs/requirements/static-site
     image: static-site
     env_file: .env
     restart: on-failure

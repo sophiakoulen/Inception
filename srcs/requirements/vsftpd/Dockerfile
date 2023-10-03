@@ -4,9 +4,9 @@ RUN apk update && apk upgrade && apk add vsftpd
 
 EXPOSE 20 21 990 5000-5042
 
-COPY srcs/requirements/vsftpd/conf/vsftpd.conf /etc/vsftpd/vsftpd.conf
+COPY conf/vsftpd.conf /etc/vsftpd/vsftpd.conf
 
-COPY srcs/requirements/vsftpd/tools/vsftpd-entrypoint.sh /
+COPY tools/vsftpd-entrypoint.sh /
 
 ENTRYPOINT ["/vsftpd-entrypoint.sh"]
 
