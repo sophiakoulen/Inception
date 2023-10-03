@@ -1,9 +1,9 @@
 FROM alpine:3.17
 
-RUN apk add --no-cache nginx
+RUN apk add --no-cache nginx gettext
 
-#copy config file
-COPY conf/default.conf /etc/nginx/http.d/default.conf
+#copy config files
+COPY conf/ /etc/nginx/http.d/
 
 #copy SSL certificate
 COPY certs/ /etc/nginx/certs

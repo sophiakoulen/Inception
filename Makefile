@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausann>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/22 11:55:07 by skoulen           #+#    #+#              #
-#    Updated: 2023/10/03 12:04:42 by skoulen          ###   ########.fr        #
+#    Updated: 2023/10/03 13:39:41 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,7 @@ SSL_CERT_DIR=	./srcs/requirements/nginx/certs/
 SSL_CERT_NAME=	$(DOMAIN)
 SSL_CERT=		$(SSL_CERT_DIR)/$(SSL_CERT_NAME).crt
 
-NGINX_CONF_FILE=./srcs/requirements/nginx/conf/default.conf
-
-all: self-signed-cert nginx-conf build up
+all: self-signed-cert build up
 
 self-signed-cert: $(SSL_CERT)
 
@@ -49,19 +47,13 @@ $(ROOT_CA): | $(ROOT_CA_DIR)
 $(SSL_CERT): $(ROOT_CA) | $(SSL_CERT_DIR)
 	$(ENV) ./srcs/requirements/nginx/tools/gen-self-signed-certificate.sh $(ROOT_CA_DIR) $(ROOT_CA_NAME) $(SSL_CERT_DIR)
 
-rm-nginx-conf:
-	rm -f $(NGINX_CONF_FILE)
-
-nginx-conf:
-	$(ENV) ./srcs/requirements/nginx/tools/gen-nginx-conf.sh $(dir $(NGINX_CONF_FILE))
-
-up: down $(SSL_CERT) nginx-conf
+up: down $(SSL_CERT)
 	 docker compose -f srcs/docker-compose.yml up -d
 
-build: down $(SSL_CERT) nginx-conf
+build: down $(SSL_CERT)
 	 docker compose -f srcs/docker-compose.yml build
 
-rebuild: down $(SSL_CERT) nginx-conf
+rebuild: down $(SSL_CERT)
 	 docker compose -f srcs/docker-compose.yml build --no-cache
 
 re: rebuild up
@@ -87,5 +79,4 @@ stop-%:
 .PHONY: all \
 		self-signed-cert root-cert rm-self-signed-cert rm-root-cert \
 		build rebuild \
-		re up down logs \
-		nginx-conf rm-nginx-conf
+		re up down logs

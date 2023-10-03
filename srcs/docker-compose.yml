@@ -16,6 +16,7 @@ services:
     networks:
       - website
     restart: on-failure
+    env_file: .env
  
   wordpress:
     container_name: wordpress-container

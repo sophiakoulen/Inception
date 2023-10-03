@@ -1,12 +1,11 @@
-#replace DOMAIN with domain name
 server {
-	server_name			DOMAIN;
+	server_name			${DOMAIN};
     
 	listen 				443 ssl;
 	listen				[::]:443 ssl;
 	
-	ssl_certificate		/etc/nginx/certs/DOMAIN.crt;
-	ssl_certificate_key	/etc/nginx/certs/DOMAIN.key;
+	ssl_certificate		/etc/nginx/certs/${DOMAIN}.crt;
+	ssl_certificate_key	/etc/nginx/certs/${DOMAIN}.key;
 	ssl_protocols		TLSv1.2 TLSv1.3;
 	ssl_certificate_key	HIGH:!aNULL:!MD5;
 
@@ -35,7 +34,7 @@ server {
 }
 
 server {
-	server_name			DOMAIN;
+	server_name			${DOMAIN};
     
 	listen 				8080;
 	listen				[::]:8080;
