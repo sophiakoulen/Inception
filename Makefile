@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausann>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/22 11:55:07 by skoulen           #+#    #+#              #
-#    Updated: 2023/10/03 11:33:51 by skoulen          ###   ########.fr        #
+#    Updated: 2023/10/03 11:46:58 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,18 @@ down:
 
 logs:
 	 docker compose -f srcs/docker-compose.yml logs
+
+
+#building and running individual services
+build-%:
+	docker compose -f srcs/docker-compose.yml build	$*
+
+up-%:
+	docker compose -f srcs/docker-compose.yml up	$*
+
+stop-%:
+	docker compose -f srcs/docker-compose.yml stop	$*
+
 
 .PHONY: all \
 		self-signed-cert root-cert rm-self-signed-cert rm-root-cert \
