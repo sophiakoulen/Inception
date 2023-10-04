@@ -19,5 +19,5 @@ RUN addgroup -S $FTP_USER && \
 
 #USER $FTP_USER
 
-CMD ["vsftpd", "/etc/vsftpd/vsftpd.conf"]
+CMD ["vsftpd", "/etc/vsftpd/vsftpd.conf", "-ovsftpd_log_file=/proc/1/fd/1"]
 
