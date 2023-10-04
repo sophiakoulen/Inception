@@ -17,7 +17,5 @@ RUN addgroup -S $FTP_USER && \
 	 adduser -S $FTP_USER -G $FTP_USER && \
 	 echo $FTP_USER:$FTP_PASSWORD | chpasswd
 
-#USER $FTP_USER
-
 CMD ["vsftpd", "/etc/vsftpd/vsftpd.conf", "-ovsftpd_log_file=/proc/1/fd/1"]
 

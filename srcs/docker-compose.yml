@@ -68,6 +68,10 @@ services:
         FTP_USER: ${FTP_USER}
         FTP_PASSWORD: ${FTP_PASSWORD}
     image: vsftpd
+    volumes:
+      - type: bind
+        source: ${HOME}/data/wordpress
+        target: /home/${FTP_USER}/wordpress
     restart: on-failure
     ports:
       - "21:21"
