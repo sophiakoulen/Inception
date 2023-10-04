@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausann>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/22 11:55:07 by skoulen           #+#    #+#              #
-#    Updated: 2023/10/03 13:39:41 by skoulen          ###   ########.fr        #
+#    Updated: 2023/10/04 14:08:01 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,20 @@ SSL_CERT_DIR=	./srcs/requirements/nginx/certs/
 SSL_CERT_NAME=	$(DOMAIN)
 SSL_CERT=		$(SSL_CERT_DIR)/$(SSL_CERT_NAME).crt
 
-all: self-signed-cert build up
+WORDPRESS_VOLUME=	${HOME}/data/wordpress
+DATABASE_VOLUME=	${HOME}/data/database
 
+all: volumes self-signed-cert build up
+
+#directories for the bind mounts
+volumes:
+	mkdir -p	${WORDPRESS_VOLUME} ${DATABASE_VOLUME}
+
+rm-volumes:
+	rm -rf		${WORDPRESS_VOLUME} ${DATABASE_VOLUME}
+
+
+#generate self signed certificate
 self-signed-cert: $(SSL_CERT)
 
 root-cert: $(ROOT_CA)
@@ -47,6 +59,8 @@ $(ROOT_CA): | $(ROOT_CA_DIR)
 $(SSL_CERT): $(ROOT_CA) | $(SSL_CERT_DIR)
 	$(ENV) ./srcs/requirements/nginx/tools/gen-self-signed-certificate.sh $(ROOT_CA_DIR) $(ROOT_CA_NAME) $(SSL_CERT_DIR)
 
+
+#build all the containers
 up: down $(SSL_CERT)
 	 docker compose -f srcs/docker-compose.yml up -d
 
@@ -77,6 +91,8 @@ stop-%:
 
 
 .PHONY: all \
-		self-signed-cert root-cert rm-self-signed-cert rm-root-cert \
+		volumes rm-volumes \
+		self-signed-cert rm-self-signed-cert \
+		root-cert rm-root-cert \
 		build rebuild \
 		re up down logs
