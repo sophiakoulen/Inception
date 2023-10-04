@@ -96,6 +96,10 @@ services:
     build:
       context: srcs/requirements/static-site
     image: static-site
+    volumes:
+      - type: bind
+        source: ${ZOLA_VOLUME}
+        target: /var/www/zola 
     env_file: .env
     restart: on-failure
     ports:
