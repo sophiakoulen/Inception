@@ -1,4 +1,3 @@
 +++
-[extra]
-section_path = "posts/_index.md"
+title = "About Inception"
 +++

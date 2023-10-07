@@ -4,42 +4,21 @@
         <loc>http://localhost:8081/</loc>
     </url>
     <url>
-        <loc>http://localhost:8081/about/</loc>
+        <loc>http://localhost:8081/containers/</loc>
     </url>
     <url>
-        <loc>http://localhost:8081/posts/</loc>
+        <loc>http://localhost:8081/containers/mariadb/</loc>
+        <lastmod>2023-10-07</lastmod>
     </url>
     <url>
-        <loc>http://localhost:8081/posts/markdown/</loc>
-        <lastmod>2022-01-01</lastmod>
+        <loc>http://localhost:8081/containers/nginx/</loc>
+        <lastmod>2023-10-07</lastmod>
     </url>
     <url>
-        <loc>http://localhost:8081/posts/math-symbols-test/</loc>
-        <lastmod>2023-01-06</lastmod>
+        <loc>http://localhost:8081/containers/page/1/</loc>
     </url>
     <url>
-        <loc>http://localhost:8081/posts/page/1/</loc>
-    </url>
-    <url>
-        <loc>http://localhost:8081/posts/table-of-contents/</loc>
-        <lastmod>2022-01-02</lastmod>
-    </url>
-    <url>
-        <loc>http://localhost:8081/projects/</loc>
-    </url>
-    <url>
-        <loc>http://localhost:8081/projects/project-1/</loc>
-    </url>
-    <url>
-        <loc>http://localhost:8081/projects/project-2/</loc>
-    </url>
-    <url>
-        <loc>http://localhost:8081/projects/project-3/</loc>
-    </url>
-    <url>
-        <loc>http://localhost:8081/projects/project-4/</loc>
-    </url>
-    <url>
-        <loc>http://localhost:8081/projects/project-5/</loc>
+        <loc>http://localhost:8081/containers/wordpress/</loc>
+        <lastmod>2023-10-07</lastmod>
     </url>
 </urlset>

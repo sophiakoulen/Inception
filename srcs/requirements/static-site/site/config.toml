@@ -18,12 +18,10 @@ favicon = "/icon/favicon.png"
 theme = "toggle"
 
 menu = [
-    { name = "/posts", url = "/posts", weight = 1 },
-    { name = "/projects", url = "/projects", weight = 2 },
-    { name = "/about", url = "/about", weight = 3 },
+    { name = "/home", url = "/", weight = 3 },
+    { name = "/containers", url = "/containers", weight = 1 },
 ]
 
 socials = [
-    { name = "twitter", url = "https://twitter.com/not_matthias", icon = "twitter" },
-    { name = "github", url = "https://github.com/not-matthias/", icon = "github" },
+    { name = "github", url = "https://github.com/sophiakoulen/Inception", icon = "github" },
 ]
