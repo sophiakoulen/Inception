@@ -51,7 +51,7 @@ services:
   redis-cache:
     container_name: redis-cache-container
     build:
-      context: srcs/requirements/redis-cache
+      context: requirements/redis-cache
       args:
         REDIS_PASSWORD: ${REDIS_PASSWORD}
     image: redis-cache
@@ -63,7 +63,7 @@ services:
   vsftpd:
     container_name: vsftpd-container
     build:
-      context: srcs/requirements/vsftpd
+      context: requirements/vsftpd
       args:
         FTP_USER: ${FTP_USER}
         FTP_PASSWORD: ${FTP_PASSWORD}
@@ -82,7 +82,7 @@ services:
   adminer:
     container_name: adminer-container
     build:
-      context: srcs/requirements/adminer
+      context: requirements/adminer
     image: adminer
     env_file: .env
     networks:
@@ -94,11 +94,11 @@ services:
   static-site:
     container_name: static-site-container
     build:
-      context: srcs/requirements/static-site
+      context: requirements/static-site
     image: static-site
     volumes:
       - type: bind
-        source: ${ZOLA_VOLUME}
+        source: requirements/static-site/site
         target: /var/www/zola 
     env_file: .env
     restart: on-failure
