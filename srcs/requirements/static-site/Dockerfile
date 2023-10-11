@@ -2,9 +2,11 @@ FROM alpine:3.17
 
 RUN apk add --no-cache lighttpd zola
 
-COPY conf/lighttpd.conf /
+COPY srcs/requirements/static-site/conf/lighttpd.conf /
 
-COPY tools/entrypoint.sh /
+COPY README.md /README.md
+
+COPY srcs/requirements/static-site/tools/entrypoint.sh /
 
 EXPOSE 8081
 

@@ -19,7 +19,7 @@ theme = "toggle"
 
 menu = [
     { name = "/home", url = "/", weight = 3 },
-    { name = "/containers", url = "/containers", weight = 1 },
+	{ name = "/README", url = "/readme", weight = 3}
 ]
 
 socials = [

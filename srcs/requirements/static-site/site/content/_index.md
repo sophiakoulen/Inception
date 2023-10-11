@@ -1,3 +1,3 @@
 +++
-title = "About Inception"
+title = "A mini website about Inception"
 +++

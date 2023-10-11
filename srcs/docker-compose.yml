@@ -1,5 +1,5 @@
 services:
- 
+
   nginx:
     container_name: nginx-container
     build:
@@ -17,7 +17,7 @@ services:
       - website
     restart: on-failure
     env_file: .env
- 
+
   wordpress:
     container_name: wordpress-container
     build:
@@ -33,7 +33,7 @@ services:
       - mariadb
     env_file: .env
     restart: on-failure
-  
+
   mariadb:
     container_name: mariadb-container
     build:
@@ -94,12 +94,13 @@ services:
   static-site:
     container_name: static-site-container
     build:
-      context: requirements/static-site
+      context: ..
+      dockerfile: srcs/requirements/static-site/Dockerfile
     image: static-site
     volumes:
       - type: bind
         source: requirements/static-site/site
-        target: /var/www/zola 
+        target: /var/www/zola
     env_file: .env
     restart: on-failure
     ports:
