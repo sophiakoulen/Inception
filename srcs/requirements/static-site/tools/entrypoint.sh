@@ -12,7 +12,7 @@ EOF
 
 cat /README.md >> /var/www/zola/content/README.md
 
-rm -f /var/www/html
+rm -rf /var/www/html
 
 zola --root /var/www/zola build --output-dir /var/www/html
 
