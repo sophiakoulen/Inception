@@ -23,9 +23,6 @@ SSL_CERT_DIR=	./srcs/requirements/nginx/certs/
 SSL_CERT_NAME=	$(DOMAIN)
 SSL_CERT=		$(SSL_CERT_DIR)/$(SSL_CERT_NAME).crt
 
-WORDPRESS_VOLUME=	${HOME}/data/wordpress
-DATABASE_VOLUME=	${HOME}/data/database
-
 all: volumes self-signed-cert build up
 
 #directories for the bind mounts
