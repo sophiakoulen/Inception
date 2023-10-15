@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausann>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/22 11:55:07 by skoulen           #+#    #+#              #
-#    Updated: 2023/10/04 14:08:01 by skoulen          ###   ########.fr        #
+#    Updated: 2023/10/15 14:37:56 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,10 @@ all: volumes self-signed-cert build up
 
 #directories for the bind mounts
 volumes:
-	mkdir -p	${WORDPRESS_VOLUME} ${DATABASE_VOLUME}
+	mkdir -p	${WORDPRESS_VOLUME} ${DATABASE_VOLUME} ${ADMINER_VOLUME}
 
 rm-volumes:
-	rm -rf		${WORDPRESS_VOLUME} ${DATABASE_VOLUME}
+	rm -rf		${WORDPRESS_VOLUME} ${DATABASE_VOLUME} ${ADMINER_VOLUME}
 
 
 #generate self signed certificate

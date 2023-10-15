@@ -4,6 +4,8 @@ RUN apk add --no-cache lighttpd zola
 
 COPY srcs/requirements/static-site/conf/lighttpd.conf /
 
+COPY srcs/requirements/static-site/site /var/www/zola
+
 COPY README.md /README.md
 
 COPY srcs/requirements/static-site/tools/entrypoint.sh /

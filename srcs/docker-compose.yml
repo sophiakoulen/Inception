@@ -9,9 +9,7 @@ services:
       - "443:443"
       - "8080:8080"
     volumes:
-      - type: bind
-        source: ${WORDPRESS_VOLUME}
-        target: /var/www/html
+      - wordpress_vol:/var/www/html
       - adminer_vol:/var/www/adminer
     networks:
       - website
@@ -24,9 +22,7 @@ services:
       context: requirements/wordpress
     image: wordpress
     volumes:
-      - type: bind
-        source: ${WORDPRESS_VOLUME}
-        target: /var/www/html
+      - wordpress_vol:/var/www/html
     networks:
       - website
     depends_on:
@@ -41,9 +37,7 @@ services:
     image: mariadb
     env_file: .env
     volumes:
-      - type: bind
-        source: ${DATABASE_VOLUME}
-        target: /var/lib/mysql
+      - database_vol:/var/lib/mysql
     networks:
       - website
     restart: on-failure
@@ -69,9 +63,7 @@ services:
         FTP_PASSWORD: ${FTP_PASSWORD}
     image: vsftpd
     volumes:
-      - type: bind
-        source: ${WORDPRESS_VOLUME}
-        target: /home/${FTP_USER}/wordpress
+      - wordpress_vol:/home/${FTP_USER}/wordpress
     restart: on-failure
     ports:
       - "21:21"
@@ -97,10 +89,6 @@ services:
       context: ..
       dockerfile: srcs/requirements/static-site/Dockerfile
     image: static-site
-    volumes:
-      - type: bind
-        source: requirements/static-site/site
-        target: /var/www/zola
     env_file: .env
     restart: on-failure
     ports:
@@ -110,4 +98,21 @@ networks:
   website:
 
 volumes:
+  wordpress_vol:
+    driver: local
+    driver_opts:
+      device: ${WORDPRESS_VOLUME}
+      type: volume
+      o: bind
+  database_vol:
+    driver: local
+    driver_opts:
+      device: ${DATABASE_VOLUME}
+      type: volume
+      o: bind
   adminer_vol:
+    driver: local
+    driver_opts:
+      device: ${ADMINER_VOLUME}
+      type: volume
+      o: bind
