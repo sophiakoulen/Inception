@@ -1,5 +1,9 @@
 #!/bin/bash
 
+ls -l /var/www
+id -u
+groups
+
 download_wp()
 {
 	if test -f "/var/www/html/wp-config-sample.php"; then

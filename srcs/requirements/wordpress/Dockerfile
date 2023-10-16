@@ -21,9 +21,10 @@ COPY tools/wp-entrypoint.sh /
 
 ENV SERVICE_NAME="wordpress"
 
-RUN adduser $SERVICE_NAME --disabled-password && \
+RUN addgroup -g 4242 wordpress_group && \
+	adduser $SERVICE_NAME --disabled-password -G wordpress_group && \
 	touch /var/log/php81/error.log && \
-	chown $SERVICE_NAME:$SERVICE_NAME /var/log/php81/error.log && \
+	chown $SERVICE_NAME:wordpress_group /var/log/php81/error.log && \
 	chmod 644 /var/log/php81/error.log
 
 USER $SERVICE_NAME

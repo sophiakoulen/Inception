@@ -23,11 +23,13 @@ SSL_CERT_DIR=	./srcs/requirements/nginx/certs/
 SSL_CERT_NAME=	$(DOMAIN)
 SSL_CERT=		$(SSL_CERT_DIR)/$(SSL_CERT_NAME).crt
 
-all: volumes self-signed-cert build up
+all: self-signed-cert build up
 
 #directories for the bind mounts
 volumes:
-	mkdir -p	${WORDPRESS_VOLUME} ${DATABASE_VOLUME} ${ADMINER_VOLUME}
+	mkdir -p		${WORDPRESS_VOLUME} ${DATABASE_VOLUME} ${ADMINER_VOLUME}
+	chown :4242 -R	${WORDPRESS_VOLUME}
+	chmod 775		${WORDPRESS_VOLUME}
 
 rm-volumes:
 	rm -rf		${WORDPRESS_VOLUME} ${DATABASE_VOLUME} ${ADMINER_VOLUME}
